@@ -1,0 +1,14 @@
+App\App.class
+DATA\Jugador.class
+DATA\Ronda.class
+DAO\TorneoDAO.class
+DATA\ESTADO_PARTIDA.class
+DAO\PartidaDAO.class
+DATA\Torneo.class
+GUI\VPal.class
+CONTROLADOR\PartidaController.class
+DATA\PosicionPieza.class
+CONTROLADOR\TorneoController.class
+DAO\GestorBD.class
+DATA\Partida.class
+Main\Main.class
