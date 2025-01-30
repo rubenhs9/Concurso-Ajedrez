@@ -1,13 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAO;
 
-/**
- *
- * @author Rubén
- */
+import CONTROLADOR.TorneoController;
+
 public class TorneoDAO {
     
+    private TorneoController torneo;
+    
+    public void obtenerResultadoTorneo(){
+        
+    }
 }

@@ -9,5 +9,6 @@ package DATA;
  * @author Rubén
  */
 public enum ESTADO_PARTIDA {
+    EN_CURSO, FINALIZADA, CANCELADA;
     
 }
