@@ -1,9 +1,8 @@
 GUI\TorneoFrame$1.class
 App\App.class
+GUI\TablaPartida.class
 DATA\Jugador.class
-GUI\PartidaTableModel.class
 DATA\Ronda.class
-DATA\ESTADO_PARTIDA.class
 DAO\PartidaDAO.class
 DATA\Torneo.class
 GUI\TorneoFrame.class

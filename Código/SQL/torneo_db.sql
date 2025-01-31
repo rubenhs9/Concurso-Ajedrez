@@ -1,5 +1,6 @@
 CREATE DATABASE torneo_db;
-USE torneo_db;
+
+
 
 -- Obtener el ID de "Semifinales"
 SELECT ronda_id FROM Ronda WHERE nombre_ronda = 'Semifinales';
@@ -9,6 +10,7 @@ SELECT * FROM Partida WHERE ronda_id =5;
 
 SELECT * FROM Partida;
 SELECT * FROM Ronda;
+
 
 SELECT p.* 
 FROM Partida p
