@@ -7,6 +7,7 @@ DATA\ESTADO_PARTIDA.class
 DAO\PartidaDAO.class
 DATA\Torneo.class
 GUI\TorneoFrame.class
+CONTROLADOR\PartidaController.class
 CONTROLADOR\TorneoController.class
 DAO\JugadorDAO.class
 DAO\GestorBD.class

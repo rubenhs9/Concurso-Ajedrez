@@ -22,39 +22,37 @@ public class TorneoFrame extends JFrame {
         setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        setLocationRelativeTo(null); // Centrar la ventana en la pantalla
+        setLocationRelativeTo(null); 
 
-        // Inicializar la barra de estado primero
         lblEstado = new JLabel("Listo");
         lblEstado.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
         lblEstado.setFont(new Font("Arial", Font.PLAIN, 12));
         lblEstado.setForeground(new Color(100, 100, 100));
         add(lblEstado, BorderLayout.SOUTH);
 
-        // Panel superior con opciones
         JPanel panelSuperior = new JPanel();
         panelSuperior.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
         panelSuperior.setBackground(new Color(240, 240, 240));
         panelSuperior.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         comboRondas = new JComboBox<>();
-        comboRondas.setPreferredSize(new Dimension(250, 40)); // Aumentar el tamaño del combo
-        comboRondas.setFont(new Font("Arial", Font.PLAIN, 14)); // Aumentar el tamaño de la fuente
-        cargarRondas(); // Cargar nombres de las rondas en el combo
+        comboRondas.setPreferredSize(new Dimension(250, 40)); 
+        comboRondas.setFont(new Font("Arial", Font.PLAIN, 14)); 
+        cargarRondas();
 
         btnMostrarRonda = new JButton("Mostrar por Ronda", new ImageIcon("icons/filter.png"));
         btnMostrarRonda.setBackground(new Color(52, 152, 219));
         btnMostrarRonda.setForeground(Color.WHITE);
         btnMostrarRonda.setFocusPainted(false);
-        btnMostrarRonda.setFont(new Font("Arial", Font.BOLD, 14)); // Aumentar el tamaño de la fuente
-        btnMostrarRonda.setPreferredSize(new Dimension(200, 40)); // Aumentar el tamaño del botón
+        btnMostrarRonda.setFont(new Font("Arial", Font.BOLD, 14)); 
+        btnMostrarRonda.setPreferredSize(new Dimension(200, 40)); 
 
         btnMostrarTodo = new JButton("Mostrar Todo el Torneo", new ImageIcon("icons/list.png"));
         btnMostrarTodo.setBackground(new Color(46, 204, 113));
         btnMostrarTodo.setForeground(Color.WHITE);
         btnMostrarTodo.setFocusPainted(false);
-        btnMostrarTodo.setFont(new Font("Arial", Font.BOLD, 14)); // Aumentar el tamaño de la fuente
-        btnMostrarTodo.setPreferredSize(new Dimension(220, 40)); // Aumentar el tamaño del botón
+        btnMostrarTodo.setFont(new Font("Arial", Font.BOLD, 14)); 
+        btnMostrarTodo.setPreferredSize(new Dimension(220, 40)); 
 
         panelSuperior.add(new JLabel("Ronda:"));
         panelSuperior.add(comboRondas);
@@ -63,7 +61,6 @@ public class TorneoFrame extends JFrame {
 
         add(panelSuperior, BorderLayout.NORTH);
 
-        // Tabla para mostrar resultados
         tablaPartidas = new JTable();
         tablaPartidas.setFont(new Font("Arial", Font.PLAIN, 12));
         tablaPartidas.setRowHeight(25);
@@ -71,13 +68,11 @@ public class TorneoFrame extends JFrame {
         tablaPartidas.setSelectionForeground(Color.WHITE);
         tablaPartidas.setGridColor(new Color(200, 200, 200));
 
-        // Personalizar el encabezado de la tabla
         JTableHeader header = tablaPartidas.getTableHeader();
         header.setFont(new Font("Arial", Font.BOLD, 14));
         header.setBackground(new Color(52, 152, 219));
         header.setForeground(Color.WHITE);
 
-        // Alternar colores de filas
         tablaPartidas.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
             public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -91,7 +86,6 @@ public class TorneoFrame extends JFrame {
 
         add(new JScrollPane(tablaPartidas), BorderLayout.CENTER);
 
-        // Eventos de botones
         btnMostrarRonda.addActionListener(e -> mostrarPorRonda());
         btnMostrarTodo.addActionListener(e -> mostrarTodoElTorneo());
     }
@@ -100,7 +94,7 @@ public class TorneoFrame extends JFrame {
         try {
             List<Ronda> rondas = RondaDAO.obtenerRondas();
             for (Ronda ronda : rondas) {
-                comboRondas.addItem(ronda); // Agrega el objeto Ronda directamente
+                comboRondas.addItem(ronda); 
             }
             lblEstado.setText("Rondas cargadas correctamente.");
         } catch (SQLException e) {
@@ -109,7 +103,7 @@ public class TorneoFrame extends JFrame {
         }
     }
     public void actualizarPartidas(List<Partida> partidas) {
-        tablaPartidas.setModel(new PartidaTableModel(partidas));
+        tablaPartidas.setModel(new TablaPartida(partidas));
         lblEstado.setText("Datos actualizados correctamente.");
     }
 
@@ -122,7 +116,7 @@ public class TorneoFrame extends JFrame {
 
         try {
             List<Partida> partidas = PartidaDAO.obtenerPartidasPorRonda(rondaSeleccionada.getRondaId());
-            tablaPartidas.setModel(new PartidaTableModel(partidas)); // Usar el nuevo modelo
+            tablaPartidas.setModel(new TablaPartida(partidas)); 
             lblEstado.setText("Mostrando partidas de la ronda: " + rondaSeleccionada.getNombreRonda());
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener partidas: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -131,7 +125,7 @@ public class TorneoFrame extends JFrame {
     }
     
     public void actualizarRondasEnComboBox() {
-        comboRondas.removeAllItems(); // Limpiar el combo box
+        comboRondas.removeAllItems(); 
         try {
             List<Ronda> rondasActualizadas = RondaDAO.obtenerRondas();
             for (Ronda ronda : rondasActualizadas) {
@@ -145,7 +139,7 @@ public class TorneoFrame extends JFrame {
        private void mostrarTodoElTorneo() {
         try {
             List<Partida> partidas = PartidaDAO.obtenerTodasLasPartidas();
-            tablaPartidas.setModel(new PartidaTableModel(partidas)); // Usar el nuevo modelo
+            tablaPartidas.setModel(new TablaPartida(partidas)); // Usar el nuevo modelo
             lblEstado.setText("Mostrando todas las partidas del torneo.");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error al obtener todas las partidas: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

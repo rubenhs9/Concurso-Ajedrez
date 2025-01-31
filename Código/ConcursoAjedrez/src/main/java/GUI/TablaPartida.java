@@ -1,17 +1,14 @@
 package GUI;
 
-import DATA.Jugador;
 import DATA.Partida;
 import javax.swing.table.AbstractTableModel;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class PartidaTableModel extends AbstractTableModel {
-    private final String[] columnNames = {"Jugador Blancas", "Jugador Negras", "Ganador", "Tiempo", "Inicio", "Fin"};
+public class TablaPartida extends AbstractTableModel {
+    private final String[] columnas = {"Jugador Blancas", "Jugador Negras", "Ganador", "Tiempo", "Inicio", "Fin"};
     private final List<Partida> partidas;
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-    public PartidaTableModel(List<Partida> partidas) {
+    public TablaPartida(List<Partida> partidas) {
         this.partidas = partidas;
     }
 
@@ -22,12 +19,12 @@ public class PartidaTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return columnNames.length;
+        return columnas.length;
     }
 
     @Override
     public String getColumnName(int columnIndex) {
-        return columnNames[columnIndex];
+        return columnas[columnIndex];
     }
 
     @Override
