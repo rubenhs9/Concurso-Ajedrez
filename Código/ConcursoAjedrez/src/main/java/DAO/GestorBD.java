@@ -3,6 +3,7 @@ package DAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -15,6 +16,13 @@ public class GestorBD {
     
     public static Connection conectarBDD() throws SQLException{
         return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+    
+     public static void ejecutarUpdate(String sql) throws SQLException {
+        try (Connection conn = conectarBDD();
+             Statement stmt = conn.createStatement()) {
+            stmt.executeUpdate(sql);
+        }
     }
     
     public static void cerrarConexion(Connection conn){

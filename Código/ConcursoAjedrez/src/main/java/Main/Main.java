@@ -1,19 +1,24 @@
 package Main;
 
+import CONTROLADOR.TorneoController;
 import DAO.GestorBD;
-import java.sql.Connection;
+import GUI.TorneoFrame;
+import javax.swing.SwingUtilities;
 
 public class Main {
 
     public static void main(String[] args) {
-        try{
-            Connection conn = GestorBD.conectarBDD();
-            System.out.println("Conexion EXITOSA con la base de datos");
-            GestorBD.cerrarConexion(conn);
-        }catch(Exception e){
+         try {
+            GestorBD.conectarBDD();
+            TorneoFrame frame = new TorneoFrame();
+            TorneoController controller = new TorneoController(frame); // Inyectar la GUI
+            controller.simularTorneo();
+
+            SwingUtilities.invokeLater(() -> {
+                frame.setVisible(true);
+            });
+        } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("ERROR AL CONECTARSE A BD");
         }
     }
-    
 }

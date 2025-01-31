@@ -9,5 +9,7 @@ package DATA;
  * @author Rubén
  */
 public enum ESTADO_PARTIDA {
-    
+    PENDIENTE,
+    TERMINADA,
+    EN_CURSO
 }
